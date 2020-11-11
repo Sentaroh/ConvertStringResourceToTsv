@@ -70,7 +70,12 @@ public class ConvertStringResourceToCsv {
 		          elementName = xpp.getName();
 		          if(elementName.equals("string")){
 //		        	  System.out.println(xpp.getAttributeName(0)+ " = "+ xpp.getAttributeValue(0));
-		        	  pw.println(xpp.getAttributeValue(0)+"\t"+xpp.nextText());
+		        	  String key_name=xpp.getAttributeValue(0);
+		        	  String value=xpp.nextText();
+		        	  value=value.replaceAll("&", "&amp;");
+		        	  value=value.replaceAll("<", "&gt;");
+		        	  value=value.replaceAll(">", "&lt;");
+		        	  pw.println(key_name+"\t"+value);
 		          } else if(elementName.equals("string-array")){
 //				      System.out.println(xpp.getAttributeName(0)+ " = "+ xpp.getAttributeValue(0));
 				      array_name=xpp.getAttributeValue(0);
