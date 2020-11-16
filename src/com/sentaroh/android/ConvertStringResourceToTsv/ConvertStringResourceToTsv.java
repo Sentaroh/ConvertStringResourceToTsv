@@ -33,19 +33,23 @@ import java.io.StringReader;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-public class ConvertStringResourceToCsv {
+public class ConvertStringResourceToTsv {
 	
 	public static void main(String[] args) {
 		
-	      
+		if (args.length!=2) {
+			System.out.println("Invalid argument");
+			System.exit(16);
+		}
+			      
 		XmlPullParserFactory factory;
 		System.out.println("Conversion started");
 		try {
 
-			 BufferedWriter bw=new BufferedWriter(new FileWriter("e:\\out.txt"), 1024*1024);
+			 BufferedWriter bw=new BufferedWriter(new FileWriter(args[1]), 1024*1024);
 			 PrintWriter pw=new PrintWriter(bw);
 			
-			 BufferedReader fReader = new BufferedReader(new FileReader("e:\\test.xml"), 1024*1024);
+			 BufferedReader fReader = new BufferedReader(new FileReader(args[0]), 1024*1024);
 			 StringBuffer xmlBuffer = new StringBuffer();
 			 String line;
 			 while((line = fReader.readLine()) != null){
