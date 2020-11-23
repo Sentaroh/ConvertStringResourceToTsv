@@ -25,8 +25,14 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringReader;
 
@@ -46,10 +52,11 @@ public class ConvertStringResourceToTsv {
 		System.out.println("Conversion started");
 		try {
 
-			 BufferedWriter bw=new BufferedWriter(new FileWriter(args[1]), 1024*1024);
-			 PrintWriter pw=new PrintWriter(bw);
-			
-			 BufferedReader fReader = new BufferedReader(new FileReader(args[0]), 1024*1024);
+             PrintWriter pw = new PrintWriter(new BufferedWriter
+                    (new OutputStreamWriter(new FileOutputStream(args[1]),"UTF-8")));
+                			
+			 BufferedReader fReader = new BufferedReader(
+					 new InputStreamReader(new FileInputStream(new File(args[0])), "UTF-8"), 1024*1024);
 			 StringBuffer xmlBuffer = new StringBuffer();
 			 String line;
 			 while((line = fReader.readLine()) != null){
